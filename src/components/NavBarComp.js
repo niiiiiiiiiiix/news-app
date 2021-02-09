@@ -61,7 +61,9 @@ const useStyles = makeStyles((theme) => ({
   menuButtonHidden: {
     display: "none",
   },
-
+  title: {
+    flexGrow: 1,
+  },
   drawerPaper: {
     position: "relative",
     whiteSpace: "nowrap",
@@ -174,7 +176,13 @@ export default function NavBarComp() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap>
+          <Typography
+            className={classes.title}
+            component="h1"
+            variant="h6"
+            color="inherit"
+            noWrap
+          >
             The Newsnow
           </Typography>
           <div className={classes.search}>
