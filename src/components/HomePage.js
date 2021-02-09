@@ -7,10 +7,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
+  articleSection: {
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 20,
   },
 }));
 
@@ -37,8 +37,11 @@ export default function HomePage(props) {
   }, []);
 
   return (
-    <div className={classes.root}>
-      <HomePageCard articleData={articleData} />
-    </div>
+
+    <section className={classes.articleSection}>
+      <div className={classes.root}>
+        <HomePageCard articleData={articleData} />
+      </div>
+    </section>
   );
 }
