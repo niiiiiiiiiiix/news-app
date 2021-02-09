@@ -9,7 +9,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
-
+import backendAPI from "../backendAPI/newsapi";
 const useStyles = makeStyles({
   root: {
     maxWidth: "auto",
@@ -34,32 +34,9 @@ const useStyles = makeStyles({
   },
 });
 
-export default function HomePageCard() {
+export default function HomePageCard(props) {
   const classes = useStyles();
-
-  const [articleData, setArticleData] = useState([]);
-
-  // for loop
-  // axios
-  const getData = () => {
-    axios(
-      `https://newsapi.org/v2/top-headlines?country=us&apiKey=ccddbd47ccb846c7aee787d2c404f441`
-    )
-      .then((res) => {
-        if (res.data.status === "ok") {
-          setArticleData(res.data.articles);
-        }
-        // console.log(articleData);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-  // useState to store the top 10 news
+  const { articleData } = props;
 
   return (
     <Grid container spacing={6}>
