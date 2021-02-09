@@ -12,7 +12,23 @@ import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 1000,
+    maxWidth: "auto",
+  },
+  rootTitleContent: {
+    height: 180,
+  },
+  rootTitle: {
+    fontSize: 17,
+    fontWeight: 500,
+  },
+  rootContent: {
+    fontSize: 13,
+    fontWeight: 300,
+  },
+  ReadMore: {
+    color: "black",
+    textAlign: "right",
+    width: "100%",
   },
 });
 
@@ -51,20 +67,32 @@ export default function HomePageCard() {
             <CardActionArea>
               <CardMedia
                 component="img"
-                height="50%"
+                height="250vh"
                 image={article.urlToImage}
               />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  <p>{article.title}</p>
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  <p>{article.description}</p>
-                </Typography>
-              </CardContent>
+              <div className={classes.rootTitleContent}>
+                <CardContent>
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="h2"
+                    className={classes.rootTitle}
+                  >
+                    <p>{article.title}</p>
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                    className={classes.rootContent}
+                  >
+                    <p>{article.content}</p>
+                  </Typography>
+                </CardContent>
+              </div>
             </CardActionArea>
             <CardActions>
-              <Button size="small" color="primary">
+              <Button size="small" color="primary" className={classes.ReadMore}>
                 Read More...
               </Button>
             </CardActions>
