@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
+import HomePageCard from "./HomePageCard";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,16 +16,24 @@ const useStyles = makeStyles((theme) => ({
 export default function HomePage() {
   const classes = useStyles();
 
+  // const NewsCard = (HomePageCard) => {
+  //   // HomePageCard.forEach((element, index) => console.log(index));
+  //   console.log(HomePageCard);
+  // };
+
+  // NewsCard();
+
   return (
     <div className={classes.root}>
-      <Grid container spacing={10}>
+      <HomePageCard />
+      {/* <Grid container spacing={6}>
         <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
+          <Paper className={classes.paper} component={HomePageCard}></Paper>
         </Grid>
         <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
+          <HomePageCard />
         </Grid>
-      </Grid>
+      </Grid> */}
     </div>
   );
 }
