@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import HomePageCard from "./HomePageCard";
+import backendAPI from "../backendAPI/newsapi";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,27 +14,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function HomePage() {
+export default function HomePage(props) {
+  const [articleData, setArticleData] = useState([]);
   const classes = useStyles();
+  const { country, category } = props;
 
-  // const NewsCard = (HomePageCard) => {
-  //   // HomePageCard.forEach((element, index) => console.log(index));
-  //   console.log(HomePageCard);
-  // };
+  const getData = () => {
+    backendAPI
+      .headlines(country.toLowerCase(), category.toLowerCase())
+      .then((res) => {
+        if (res.data.status === "ok") {
+          setArticleData(res.data.articles);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
-  // NewsCard();
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <div className={classes.root}>
-      <HomePageCard />
-      {/* <Grid container spacing={6}>
-        <Grid item xs={6}>
-          <Paper className={classes.paper} component={HomePageCard}></Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <HomePageCard />
-        </Grid>
-      </Grid> */}
+      <HomePageCard articleData={articleData} />
     </div>
   );
 }
