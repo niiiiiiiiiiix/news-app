@@ -13,9 +13,12 @@ import Grid from "@material-ui/core/Grid";
 const useStyles = makeStyles({
   root: {
     maxWidth: "auto",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
   },
   rootTitleContent: {
-    height: 180,
+    paddingBottom: 0,
   },
   rootTitle: {
     fontSize: 17,
@@ -25,10 +28,9 @@ const useStyles = makeStyles({
     fontSize: 13,
     fontWeight: 300,
   },
-  ReadMore: {
-    color: "black",
-    textAlign: "right",
-    width: "100%",
+  rootButton: {
+    padding: 0,
+    fontSize: "0.6125rem",
   },
 });
 
@@ -41,7 +43,7 @@ export default function HomePageCard() {
   // axios
   const getData = () => {
     axios(
-      `https://newsapi.org/v2/top-headlines?country=us&apiKey=486ec6ef7ca346e1b0e5c4c9bff5798e`
+      `https://newsapi.org/v2/top-headlines?country=us&apiKey=ccddbd47ccb846c7aee787d2c404f441`
     )
       .then((res) => {
         if (res.data.status === "ok") {
@@ -86,16 +88,20 @@ export default function HomePageCard() {
                     component="p"
                     className={classes.rootContent}
                   >
-                    <p>{article.content}</p>
+                    <p>
+                      {article.content.slice(0, 200)}
+                      <Button
+                        size="small"
+                        color="primary"
+                        className={classes.rootButton}
+                      >
+                        &nbsp;&nbsp; read more
+                      </Button>
+                    </p>
                   </Typography>
                 </CardContent>
               </div>
             </CardActionArea>
-            <CardActions>
-              <Button size="small" color="primary" className={classes.ReadMore}>
-                Read More...
-              </Button>
-            </CardActions>
           </Card>
         </Grid>
       ))}
