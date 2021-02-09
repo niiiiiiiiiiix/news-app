@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import axios from "axios";
 import Grid from "@material-ui/core/Grid";
-import backendAPI from "../backendAPI/newsapi";
+
 const useStyles = makeStyles({
   root: {
     maxWidth: "auto",
@@ -66,7 +64,7 @@ export default function HomePageCard(props) {
                     className={classes.rootContent}
                   >
                     <p>
-                      {article.content.slice(0, 200)}
+                      {article.content?.substring(0, 200)}
                       <Button
                         size="small"
                         color="primary"
