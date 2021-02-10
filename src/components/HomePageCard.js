@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import "../App.css";
+import moment from "moment";
 
 const useStyles = makeStyles({
   root: {
@@ -27,6 +28,24 @@ const useStyles = makeStyles({
   rootTitle: {
     fontSize: 17,
     fontWeight: 500,
+  },
+  rootTitleTitle: {
+    marginBottom: 4,
+  },
+  rootTitleSource: {
+    marginTop: 0,
+    marginBottom: 0,
+    fontSize: "0.8rem",
+    color: "grey",
+    fontWeight: "bold",
+  },
+  rootTitleDate: {
+    marginTop: 0,
+    marginBottom: 0,
+    fontSize: "0.8rem",
+    color: "grey",
+    // fontWeight: "bold",
+    fontWeight: 400,
   },
   rootContent: {
     fontSize: 13,
@@ -70,8 +89,16 @@ export default function HomePageCard(props) {
                     component="h2"
                     className={classes.rootTitle}
                   >
-                    <p>
+                    <p className={classes.rootTitleTitle}>
                       {article.title.substring(0, article.title.indexOf(" - "))}
+                    </p>
+                    <p className={classes.rootTitleSource}>
+                      {article.source.name}
+                    </p>
+                    <p className={classes.rootTitleDate}>
+                      {moment(article.publishedAt)
+                        .format("DD MMM YYYY, h:mm A")
+                        .toUpperCase()}
                     </p>
                   </Typography>
                   <Typography
