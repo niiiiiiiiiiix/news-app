@@ -4,22 +4,37 @@ import Header from "./components/Header";
 import HomePage from "./components/HomePage";
 import Container from "@material-ui/core/Container";
 import { useState } from "react";
+import SearchResult from "./components/SearchResult";
 
 function App() {
   const [country, setCountry] = useState("US");
   const [category, setCategory] = useState("");
+  const [keyWord, setKeyWord] = useState("");
 
   return (
     <Router>
       <Container maxWidth="lg">
         <Header
           category={category}
+          keyWord={keyWord}
           setCountry={setCountry}
           setCategory={setCategory}
+          setKeyWord={setKeyWord}
         />
         <Switch>
           <Route
+            path={"/search"}
+            component={() => (
+              <SearchResult
+                category={category}
+                country={country}
+                keyWord={keyWord}
+              />
+            )}
+          />
+          <Route
             path="/"
+            exact
             component={() => <HomePage category={category} country={country} />}
           />
         </Switch>

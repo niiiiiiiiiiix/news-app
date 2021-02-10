@@ -1,5 +1,4 @@
 import axios from "axios";
-require("dotenv").config();
 
 const baseUrl = "https://newsapi.org/v2/";
 
@@ -9,11 +8,12 @@ const axiosInstance = axios.create({
 });
 
 const backendAPI = {
-  headlines: (country, category) => {
+  headlines: (country, category, q = "") => {
     return axiosInstance.get("top-headlines", {
       params: {
         country,
         category,
+        q,
         apiKey: process.env.REACT_APP_API_KEY,
       },
     });
