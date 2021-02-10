@@ -1,5 +1,4 @@
 import axios from "axios";
-require("dotenv").config();
 
 const baseUrl = "https://newsapi.org/v2/";
 

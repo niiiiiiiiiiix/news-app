@@ -9,6 +9,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import InputBase from "@material-ui/core/InputBase";
+import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -16,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbarTitle: {
     flex: 1,
+    "&:hover": {
+      cursor: "pointer",
+    },
   },
   toolbarSecondary: {
     justifyContent: "space-between",
@@ -86,15 +90,32 @@ const sections = [
   { title: "Sports", url: "sports" },
   { title: "Technology", url: "technology" },
 ];
-export default function Header(props) {
+function Header(props) {
   const classes = useStyles();
-  const { category, setCountry, setCategory } = props;
+  const { category, keyWord, setCountry, setCategory, setKeyWord } = props;
   function aftersearch(e, v) {
     e.preventDefault();
     if (v !== null) {
       setCountry(v.code);
     }
   }
+
+  function homePage(e) {
+    e.preventDefault();
+    props.history.push("/");
+  }
+
+  function handleSearch(e) {
+    e.preventDefault();
+    setKeyWord(e.target.value);
+  }
+
+  function handleEnter(e) {
+    if (e.keyCode === 13) {
+      props.history.push(`/search/${keyWord}`);
+    }
+  }
+
   function clickCat(e) {
     e.preventDefault();
     setCategory(e.target.text);
@@ -139,6 +160,7 @@ export default function Header(props) {
           )}
         />
         <Typography
+          onClick={(e) => homePage(e)}
           component="h2"
           variant="h5"
           color="inherit"
@@ -148,12 +170,13 @@ export default function Header(props) {
         >
           The News Now
         </Typography>
-
         <div className={classes.search}>
           <div className={classes.searchIcon}>
             <SearchIcon />
           </div>
           <InputBase
+            onChange={(e) => handleSearch(e)}
+            onKeyDown={(e) => handleEnter(e)}
             placeholder="Search…"
             classes={{
               root: classes.inputRoot,
@@ -185,6 +208,7 @@ export default function Header(props) {
   );
 }
 
+export default withRouter(Header);
 Header.propTypes = {
   sections: PropTypes.array,
   title: PropTypes.string,
