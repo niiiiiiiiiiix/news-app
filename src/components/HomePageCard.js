@@ -18,18 +18,19 @@ const useStyles = makeStyles({
     flexDirection: "column",
   },
   rootTitleContent: {
-    paddingBottom: 0,
     userSelect: "text",
     "&:hover": {
       cursor: "auto",
-      // textDecoration: "underline",
+    },
+    "&:last-child": {
+      paddingBottom: 16,
     },
   },
-  rootTitle: {
-    fontSize: 17,
-    fontWeight: 500,
-  },
+
   rootTitleTitle: {
+    fontSize: 17,
+    fontWeight: 600,
+    marginTop: 4,
     marginBottom: 4,
     minHeight: 44,
   },
@@ -51,6 +52,7 @@ const useStyles = makeStyles({
   rootContent: {
     fontSize: 13,
     fontWeight: 300,
+    marginBottom: 0,
   },
   rootButton: {
     padding: 0,
@@ -82,14 +84,9 @@ export default function HomePageCard(props) {
                 height="250vh"
                 image={article.urlToImage}
               />
-              <div className={classes.rootTitleContent}>
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="h2"
-                    className={classes.rootTitle}
-                  >
+              <div>
+                <CardContent className={classes.rootTitleContent}>
+                  <Typography gutterBottom variant="h5" component="h2">
                     <p className={classes.rootTitleTitle}>
                       {article.title.substring(0, article.title.indexOf(" - "))}
                     </p>
@@ -106,9 +103,8 @@ export default function HomePageCard(props) {
                     variant="body2"
                     color="textSecondary"
                     component="p"
-                    className={classes.rootContent}
                   >
-                    <p>
+                    <p className={classes.rootContent}>
                       {article.content?.substring(0, 200)}
                       <Button
                         size="small"
