@@ -37,7 +37,6 @@ export default function HomePage(props) {
   }, []);
 
   return (
-
     <section className={classes.articleSection}>
       <div className={classes.root}>
         <HomePageCard articleData={articleData} />

@@ -12,7 +12,11 @@ function App() {
   return (
     <Router>
       <Container maxWidth="lg">
-        <Header setCountry={setCountry} setCategory={setCategory} />
+        <Header
+          category={category}
+          setCountry={setCountry}
+          setCategory={setCategory}
+        />
         <Switch>
           <Route
             path="/"
