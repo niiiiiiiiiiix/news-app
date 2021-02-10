@@ -92,7 +92,7 @@ const sections = [
 ];
 function Header(props) {
   const classes = useStyles();
-  const { category, keyWord, setCountry, setCategory, setKeyWord } = props;
+  const { category, setCountry, setCategory, setKeyWord } = props;
   function aftersearch(e, v) {
     e.preventDefault();
     if (v !== null) {
@@ -105,14 +105,10 @@ function Header(props) {
     props.history.push("/");
   }
 
-  function handleSearch(e) {
-    e.preventDefault();
-    setKeyWord(e.target.value);
-  }
-
   function handleEnter(e) {
     if (e.keyCode === 13) {
-      props.history.push(`/search/${keyWord}`);
+      setKeyWord(e.target.value);
+      props.history.push("/search");
     }
   }
 
@@ -175,7 +171,6 @@ function Header(props) {
             <SearchIcon />
           </div>
           <InputBase
-            onChange={(e) => handleSearch(e)}
             onKeyDown={(e) => handleEnter(e)}
             placeholder="Search…"
             classes={{

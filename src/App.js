@@ -22,7 +22,16 @@ function App() {
           setKeyWord={setKeyWord}
         />
         <Switch>
-          <Route path={`/search/:keyword`} component={SearchResult} />
+          <Route
+            path={"/search"}
+            component={() => (
+              <SearchResult
+                category={category}
+                country={country}
+                keyWord={keyWord}
+              />
+            )}
+          />
           <Route
             path="/"
             exact
