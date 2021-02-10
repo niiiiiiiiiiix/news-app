@@ -70,7 +70,9 @@ export default function HomePageCard(props) {
                     component="h2"
                     className={classes.rootTitle}
                   >
-                    <p>{article.title}</p>
+                    <p>
+                      {article.title.substring(0, article.title.indexOf(" - "))}
+                    </p>
                   </Typography>
                   <Typography
                     variant="body2"
