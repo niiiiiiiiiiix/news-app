@@ -1,8 +1,8 @@
 import React from "react";
+import clsx from "clsx";
 import PropTypes from "prop-types";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import Toolbar from "@material-ui/core/Toolbar";
-
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import SearchIcon from "@material-ui/icons/Search";
@@ -56,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -74,6 +73,9 @@ const useStyles = makeStyles((theme) => ({
       fontSize: 18,
     },
   },
+  active: {
+    boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+  },
 }));
 const sections = [
   { title: "Business", url: "business" },
@@ -86,7 +88,7 @@ const sections = [
 ];
 export default function Header(props) {
   const classes = useStyles();
-  const { setCountry, setCategory } = props;
+  const { category, setCountry, setCategory } = props;
   function aftersearch(e, v) {
     e.preventDefault();
     if (v !== null) {
@@ -96,6 +98,14 @@ export default function Header(props) {
   function clickCat(e) {
     e.preventDefault();
     setCategory(e.target.text);
+  }
+
+  function setActive(title) {
+    if (category === title) {
+      return classes.active;
+    } else {
+      return "";
+    }
   }
   return (
     <React.Fragment>
@@ -165,7 +175,7 @@ export default function Header(props) {
             noWrap
             key={section.title}
             variant="body2"
-            className={classes.toolbarLink}
+            className={clsx(classes.toolbarLink, setActive(section.title))}
           >
             {section.title}
           </Link>
