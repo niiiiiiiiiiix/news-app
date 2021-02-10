@@ -31,6 +31,7 @@ const useStyles = makeStyles({
   },
   rootTitleTitle: {
     marginBottom: 4,
+    minHeight: 44,
   },
   rootTitleSource: {
     marginTop: 0,
