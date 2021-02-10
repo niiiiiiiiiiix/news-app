@@ -18,6 +18,7 @@ const useStyles = makeStyles({
     flexDirection: "column",
   },
   rootTitleContent: {
+    minHeight: 153.141,
     userSelect: "text",
     "&:hover": {
       cursor: "auto",
