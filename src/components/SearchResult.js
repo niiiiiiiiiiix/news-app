@@ -7,18 +7,24 @@ import backendAPI from "../backendAPI/newsapi";
 export default function SearchResult(props) {
   const { country, category, keyWord } = props;
   const [searchData, setSearchData] = useState([]);
+
   const getData = () => {
-    backendAPI
-      .headlines(country.toLowerCase(), category.toLowerCase(), keyWord)
-      .then((res) => {
-        if (res.data.status === "ok" && res.data.totalResults > 0) {
-          setSearchData(res.data.articles);
-          console.log(searchData);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    if (keyWord.length > 0) {
+      backendAPI
+        .headlines(
+          country.toLowerCase(),
+          category.toLowerCase(),
+          keyWord.toLowerCase()
+        )
+        .then((res) => {
+          if (res.data.status === "ok" && res.data.totalResults > 0) {
+            setSearchData(res.data.articles);
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   };
 
   useEffect(() => {
@@ -27,12 +33,21 @@ export default function SearchResult(props) {
 
   return (
     <Container>
-      {searchData.map((article) => (
-        <React.Fragment>
-          <Link>{article.title}</Link>
-          <Typography>{article.description}</Typography>
-        </React.Fragment>
-      ))}
+      {keyWord.length ? (
+        <div>
+          <Typography>
+            Total search result for: {keyWord} is {searchData.length}
+          </Typography>
+          {searchData.map((article) => (
+            <React.Fragment>
+              <Link>{article.title}</Link>
+              <Typography>{article.description}</Typography>
+            </React.Fragment>
+          ))}
+        </div>
+      ) : (
+        <Typography>Please input search term!</Typography>
+      )}
     </Container>
   );
 }

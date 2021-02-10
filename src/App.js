@@ -23,7 +23,7 @@ function App() {
         />
         <Switch>
           <Route
-            path={"/search"}
+            path="/search"
             component={() => (
               <SearchResult
                 category={category}
