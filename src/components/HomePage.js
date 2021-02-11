@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function HomePage(props) {
   const [articleData, setArticleData] = useState([]);
+  const [api, setApi] = useState(false);
   const classes = useStyles();
   const { country, category, setOpen, setArticle } = props;
 
@@ -29,6 +30,7 @@ export default function HomePage(props) {
       })
       .catch((error) => {
         console.error(error);
+        setApi(true);
       });
   };
 
@@ -39,11 +41,15 @@ export default function HomePage(props) {
   return (
     <section className={classes.articleSection}>
       <div className={classes.root}>
-        <HomePageCard
-          articleData={articleData}
-          setOpen={setOpen}
-          setArticle={setArticle}
-        />
+        {api ? (
+          "Please take out wallet and update your plan."
+        ) : (
+          <HomePageCard
+            articleData={articleData}
+            setOpen={setOpen}
+            setArticle={setArticle}
+          />
+        )}
       </div>
     </section>
   );
