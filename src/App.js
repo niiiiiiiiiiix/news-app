@@ -2,6 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import HomePage from "./components/HomePage";
+import ArticlePage from "./components/ArticlePage";
 import Container from "@material-ui/core/Container";
 import { useState } from "react";
 import SearchResult from "./components/SearchResult";
@@ -36,6 +37,13 @@ function App() {
             path="/"
             exact
             component={() => <HomePage category={category} country={country} />}
+          />
+          <Route
+            path="/article"
+            exact
+            component={() => (
+              <ArticlePage category={category} country={country} />
+            )}
           />
         </Switch>
       </Container>
