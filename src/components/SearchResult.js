@@ -13,7 +13,7 @@ const useStyles = makeStyles({
 });
 export default function SearchResult(props) {
   const classes = useStyles();
-
+  const [api, setApi] = useState(false);
   const { country, category, keyWord, setOpen, setArticle } = props;
   const [searchData, setSearchData] = useState([]);
 
@@ -32,6 +32,7 @@ export default function SearchResult(props) {
         })
         .catch((error) => {
           console.error(error);
+          setApi(true);
         });
     }
   };
@@ -48,7 +49,9 @@ export default function SearchResult(props) {
 
   return (
     <Container>
-      {keyWord.length ? (
+      {api ? (
+        "Please take out wallet and update your plan."
+      ) : keyWord.length ? (
         <div>
           <Typography>
             Total search result for "{keyWord}" is {searchData.length}
