@@ -22,6 +22,8 @@ const useStyles = makeStyles({
     userSelect: "text",
     "&:hover": {
       cursor: "auto",
+      backgroundColor: "#eeeeee",
+      transition: "0.3s",
     },
     "&:last-child": {
       paddingBottom: 16,
