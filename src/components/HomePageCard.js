@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
@@ -86,53 +85,47 @@ export default function HomePageCard(props) {
       {articleData.map((article) => (
         <Grid item xs={6}>
           <Card className={classes.root}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="250vh"
-                image={article.urlToImage}
-              />
-              <div>
-                <CardContent className={classes.rootTitleContent}>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    <p className={classes.rootTitleTitle}>
-                      {article.title.substring(0, article.title.indexOf(" - "))}
-                    </p>
-                    <p className={classes.rootTitleSource}>
-                      {article.source.name}
-                    </p>
-                    <p className={classes.rootTitleDate}>
-                      {moment(article.publishedAt)
-                        .format("DD MMM YYYY, h:mm A")
-                        .toUpperCase()}
-                    </p>
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    <p className={classes.rootContent}>
-                      {article.content?.substring(0, 200)}
-                      <Button
-                        size="small"
-                        color="primary"
-                        onClick={(e) => handleClick(article, e)}
-                        className={classes.rootButton}
+            <CardMedia
+              component="img"
+              height="250vh"
+              image={article.urlToImage}
+            />
+            <div>
+              <CardContent className={classes.rootTitleContent}>
+                <Typography gutterBottom variant="h5" component="h2">
+                  <p className={classes.rootTitleTitle}>
+                    {article.title.substring(0, article.title.indexOf(" - "))}
+                  </p>
+                  <p className={classes.rootTitleSource}>
+                    {article.source.name}
+                  </p>
+                  <p className={classes.rootTitleDate}>
+                    {moment(article.publishedAt)
+                      .format("DD MMM YYYY, h:mm A")
+                      .toUpperCase()}
+                  </p>
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  <p className={classes.rootContent}>
+                    {article.content?.substring(0, 200)}
+                    <Button
+                      size="small"
+                      color="primary"
+                      onClick={(e) => handleClick(article, e)}
+                      className={classes.rootButton}
+                    >
+                      <Link
+                        rel={"noreferrer"}
+                        target={"_blank"}
+                        className={classes.rootButtonLink}
                       >
-                        <Link
-                          rel={"noreferrer"}
-                          target={"_blank"}
-                          className={classes.rootButtonLink}
-                        >
-                          read more
-                        </Link>
-                      </Button>
-                    </p>
-                  </Typography>
-                </CardContent>
-              </div>
-            </CardActionArea>
+                        read more
+                      </Link>
+                    </Button>
+                  </p>
+                </Typography>
+              </CardContent>
+            </div>
           </Card>
         </Grid>
       ))}
