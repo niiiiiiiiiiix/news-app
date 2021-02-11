@@ -36,7 +36,7 @@ export default function HomePage(props) {
 
   useEffect(() => {
     getData();
-  });
+  }, []);
 
   return (
     <section className={classes.articleSection}>
