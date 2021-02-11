@@ -17,6 +17,11 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
   },
+  rootImage: {
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
   rootTitleContent: {
     minHeight: 153.141,
     userSelect: "text",
@@ -91,6 +96,7 @@ export default function HomePageCard(props) {
               component="img"
               height="250vh"
               image={article.urlToImage}
+              className={classes.rootImage}
             />
             <div>
               <CardContent className={classes.rootTitleContent}>
