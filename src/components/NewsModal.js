@@ -17,12 +17,40 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     width: "70%",
     margin: "0 auto",
+    overflow: "scroll",
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+  },
+  rootTitleTitle: {
+    fontSize: 17,
+    fontWeight: 600,
+    marginTop: 4,
+    marginBottom: 4,
+    minHeight: 44,
+  },
+  rootTitleSource: {
+    marginTop: 0,
+    marginBottom: 0,
+    fontSize: "0.8rem",
+    color: "grey",
+    fontWeight: "bold",
+  },
+  rootTitleDate: {
+    marginTop: 0,
+    marginBottom: 0,
+    fontSize: "0.8rem",
+    color: "grey",
+    // fontWeight: "bold",
+    fontWeight: 400,
+  },
+  rootContent: {
+    fontSize: 13,
+    fontWeight: 300,
+    marginBottom: 0,
   },
 }));
 
@@ -91,14 +119,16 @@ export default function NewsModal(props) {
               <div>
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
-                    <p>
+                    <p className={classes.rootTitleTitle}>
                       {article?.title?.substring(
                         0,
                         article?.title.indexOf(" - ")
                       )}
                     </p>
-                    <p>{article?.source?.name}</p>
-                    <p>
+                    <p className={classes.rootTitleSource}>
+                      {article?.source?.name}
+                    </p>
+                    <p className={classes.rootTitleDate}>
                       {moment(article?.publishedAt)
                         .format("DD MMM YYYY, h:mm A")
                         .toUpperCase()}
@@ -109,10 +139,38 @@ export default function NewsModal(props) {
                     color="textSecondary"
                     component="p"
                   >
-                    <p>
+                    <p className={classes.rootContent}>
                       {article?.content}
-                      <br></br>
-                      <br></br>
+                      <br />
+                      <br />
+                      My partner asked me today if I had seen the dog bowl
+                      <br />
+                      .
+                      <br />
+                      .
+                      <br />
+                      .
+                      <br />
+                      .
+                      <br />
+                      .
+                      <br />
+                      .
+                      <br />
+                      .
+                      <br />
+                      .
+                      <br />
+                      .
+                      <br />
+                      .
+                      <br />
+                      .
+                      <br />
+                      .
+                      <br />
+                      .
+                      <br />I said no I didn't know he could.
                     </p>
                   </Typography>
                 </CardContent>
