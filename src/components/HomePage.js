@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 export default function HomePage(props) {
   const [articleData, setArticleData] = useState([]);
   const classes = useStyles();
-  const { country, category } = props;
+  const { country, category, setOpen, setArticle } = props;
 
   const getData = () => {
     backendAPI
@@ -39,7 +39,11 @@ export default function HomePage(props) {
   return (
     <section className={classes.articleSection}>
       <div className={classes.root}>
-        <HomePageCard articleData={articleData} />
+        <HomePageCard
+          articleData={articleData}
+          setOpen={setOpen}
+          setArticle={setArticle}
+        />
       </div>
     </section>
   );
