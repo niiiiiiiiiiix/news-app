@@ -10,6 +10,10 @@ const useStyles = makeStyles({
       cursor: "pointer",
     },
   },
+  searchFindings: {
+    fontWeight: "bold",
+    textDecoration: "underline",
+  },
 });
 export default function SearchResult(props) {
   const classes = useStyles();
@@ -53,11 +57,13 @@ export default function SearchResult(props) {
         "Please take out wallet and update your plan."
       ) : keyWord.length ? (
         <div>
-          <Typography>
+          <Typography className={classes.searchFindings}>
             Total search result for "{keyWord}" is {searchData.length}
           </Typography>
+
           {searchData.map((article) => (
-            <React.Fragment>
+            <Typography className={classes.searchFindingsEach}>
+              <br />
               <Link
                 onClick={(e) => handleClick(article, e)}
                 className={classes.link}
@@ -65,7 +71,7 @@ export default function SearchResult(props) {
                 {article.title}
               </Link>
               <Typography>{article.description}</Typography>
-            </React.Fragment>
+            </Typography>
           ))}
         </div>
       ) : (
