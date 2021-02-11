@@ -9,6 +9,8 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import moment from "moment";
 
+import { Link } from "react-router-dom";
+
 const useStyles = makeStyles({
   root: {
     maxWidth: "auto",
@@ -71,7 +73,13 @@ const useStyles = makeStyles({
 
 export default function HomePageCard(props) {
   const classes = useStyles();
-  const { articleData } = props;
+  const { articleData, setArticle, setOpen } = props;
+
+  function handleClick(article, e) {
+    e.preventDefault();
+    setArticle(article);
+    setOpen(true);
+  }
 
   return (
     <Grid container spacing={6}>
@@ -109,16 +117,16 @@ export default function HomePageCard(props) {
                       <Button
                         size="small"
                         color="primary"
+                        onClick={(e) => handleClick(article, e)}
                         className={classes.rootButton}
                       >
-                        <a
-                          href={article.url}
+                        <Link
                           rel={"noreferrer"}
                           target={"_blank"}
                           className={classes.rootButtonLink}
                         >
                           read more
-                        </a>
+                        </Link>
                       </Button>
                     </p>
                   </Typography>
