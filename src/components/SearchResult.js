@@ -38,7 +38,7 @@ export default function SearchResult(props) {
 
   useEffect(() => {
     getData();
-  }, []);
+  });
 
   function handleClick(article, e) {
     e.preventDefault();
